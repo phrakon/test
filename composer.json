@@ -1,0 +1,15 @@
+{
+  "name": "phrakon/test",
+  "require": {
+    "php": "^7.4",
+    "ext-pdo": "*",
+    "ext-gd": "*",
+    "ext-json": "*"
+  },
+  "autoload": {
+    "psr-4": {
+      "core\\": "core/",
+      "app\\": "app/"
+    }
+  }
+}
