@@ -25,17 +25,24 @@ class DbModel extends Model
     }
 
     /**
-     * @return PDO|null
+     * @return PDO
      */
     protected static function getDB()
     {
         if (static::$_db === null) {
-            $dsn = "mysql:dbname=$_ENV[dbname];host=$_ENV[dbhost];charset=utf8";
-            static::$_db = new PDO($dsn, $_ENV['dbuser'], $_ENV['dbpass']);
-            static::$_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            throw new \Exception("You must config database");
         }
-
         return static::$_db;
+    }
+
+    /**
+     * @param array $config
+     */
+    public static function setDb($config)
+    {
+        $dsn = "mysql:dbname=$config[dbname];host=$config[dbhost];charset=utf8";
+        static::$_db = new PDO($dsn, $config['dbuser'], $config['dbpass']);
+        static::$_db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     }
 
     /**

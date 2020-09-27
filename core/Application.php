@@ -14,6 +14,20 @@ use ReflectionParameter;
 class Application extends BaseObject
 {
     /**
+     * Application constructor.
+     * @param array $config
+     */
+    public function __construct($config = [])
+    {
+        if (isset($config['db'])) {
+            DbModel::setDb($config['db']);
+            unset($config['db']);
+        }
+
+        parent::__construct($config);
+    }
+
+    /**
      * mydomain.com/index.php?r=post/update&id=100
      */
     public function run()
