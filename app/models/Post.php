@@ -21,7 +21,7 @@ class Post extends \core\DbModel
     /**
      * @var string
      */
-    public $filePath = '/app/web/upload/';
+    public static $filePath = '/app/web/upload/';
     /**
      * @var string
      */
@@ -85,7 +85,7 @@ class Post extends \core\DbModel
         $tmpFile = $file['tmp_name'];
         $ext = pathinfo($file['name'], PATHINFO_EXTENSION);
         $fileName = uniqid() . '.' . $ext;
-        $fullFileName = $this->filePath . $fileName;
+        $fullFileName = static::$filePath . $fileName;
         $this->image = $fileName;
 
         [$width, $height] = getimagesize($tmpFile);

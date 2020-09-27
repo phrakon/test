@@ -2,6 +2,7 @@
 
 namespace core;
 
+use app\models\Post;
 use app\models\User;
 use Exception;
 use ReflectionMethod;
@@ -22,6 +23,10 @@ class Application extends BaseObject
         if (isset($config['db'])) {
             DbModel::setDb($config['db']);
             unset($config['db']);
+        }
+        if(isset($config['uploadPath'])) {
+            Post::$filePath = $config['uploadPath'];
+            unset($config['uploadPath']);
         }
 
         parent::__construct($config);
